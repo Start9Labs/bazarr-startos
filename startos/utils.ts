@@ -1,5 +1,24 @@
-// Constants and helper functions shared across this package's startos/ code go
-// here. `uiPort` is the port the example daemon serves on: main.ts health-checks
-// it, and you bind it from an interface in interfaces.ts once you add one. Change
-// it to whatever your service listens on.
-export const uiPort = 80
+import {
+  uiHostId as radarrHostId,
+  uiPort as radarrPort,
+} from 'radarr-startos/startos/utils'
+import {
+  uiHostId as sonarrHostId,
+  uiPort as sonarrPort,
+} from 'sonarr-startos/startos/utils'
+
+export const uiPort = 6767
+export const uiHostId = 'ui-multi'
+export const adminUsername = 'admin'
+// Shared media paths must match Sonarr, Radarr and Jellyfin.
+export const filebrowserMountpoint = '/mnt/filebrowser'
+export const nextexplorerMountpoint = '/mnt/nextexplorer'
+
+export const arrApps = {
+  sonarr: { hostId: sonarrHostId, port: sonarrPort },
+  radarr: { hostId: radarrHostId, port: radarrPort },
+} as const
+
+export type ArrId = keyof typeof arrApps
+
+export const publicMountpoint = (id: ArrId) => `/mnt/${id}`

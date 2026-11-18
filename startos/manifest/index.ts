@@ -4,22 +4,17 @@ import { long, short } from './i18n'
 export const manifest = setupManifest({
   id: 'bazarr',
   title: 'Bazarr',
-  license: 'MIT', // TODO: match the upstream project's license
-  packageRepo: 'https://github.com/REPLACE_ME/bazarr-startos', // TODO: set the packaging repo URL
-  upstreamRepo: 'https://github.com/REPLACE_ME/REPLACE_ME', // TODO: set the upstream project URL
-  marketingUrl: 'https://REPLACE_ME', // TODO: set or remove
-  donationUrl: 'https://REPLACE_ME', // TODO: set or remove
+  license: 'GPL-3.0',
+  packageRepo: 'https://github.com/Start9Labs/bazarr-startos',
+  upstreamRepo: 'https://github.com/morpheus65535/bazarr',
+  marketingUrl: 'https://www.bazarr.media/',
+  donationUrl:
+    'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XHHRWXT9YB7WE&source=url',
   description: { short, long },
-  // 'example-volume' is an arbitrary id — name volumes whatever suits the
-  // service. It must match the volumeId mounted in startos/main.ts and the
-  // volume backed up in startos/backups.ts.
-  volumes: ['example-volume'],
+  volumes: ['startos', 'main'],
   images: {
-    // 'example-image' is an arbitrary id — it must match the imageId used in
-    // startos/main.ts. TODO: replace the hello-world image with your service's
-    // image — set dockerTag (or add a Dockerfile) and rename this key.
-    'example-image': {
-      source: { dockerTag: 'ghcr.io/start9labs/hello-world:2.0.0' },
+    bazarr: {
+      source: { dockerTag: 'lscr.io/linuxserver/bazarr:v1.6.2-ls372' },
       arch: ['x86_64', 'aarch64'],
     },
   },
